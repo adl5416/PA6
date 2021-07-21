@@ -1,3 +1,7 @@
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Calendar;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,6 +21,7 @@ public class BaseFrame extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         rebuildFacultyComboBoxes();
+        rebuildDateComboBoxes();
     }
 
     /**
@@ -156,7 +161,7 @@ public class BaseFrame extends javax.swing.JDialog {
                 .addContainerGap(94, Short.MAX_VALUE))
         );
 
-        statusTab.addTab("Reserve", jPanel2);
+        statusTab.addTab("Reserve a Room", jPanel2);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -245,7 +250,7 @@ public class BaseFrame extends javax.swing.JDialog {
 
     private void addDateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDateButtonActionPerformed
         // TODO add your handling code here:
-        Date date = addDateTextField.getText();
+        Date date = Date.parseDate(addDateTextField.getText());
         Dates.addDate(date);
         rebuildFacultyComboBoxes();
     }//GEN-LAST:event_addDateButtonActionPerformed
@@ -255,7 +260,8 @@ public class BaseFrame extends javax.swing.JDialog {
         String name = (String) facultyComboBox.getSelectedItem();
         Date date = (String) dateComboBox.getSelectedItem();
         int seats = Integer.parseInt(seatsRequiredTextField.getText());
-        Timestamp timestamp;
+        Timestamp timestamp = new Timestamp(Calendar.getInstance().getTime().getTime());
+        RoomQueries.getAllPossibleRooms(seats);
         ReservationQueries.addReservationEntry(name, room, date, seats, timestamp);
         reserveResultsLabel.setText("You have been reserved");
     }//GEN-LAST:event_reserveButtonActionPerformed

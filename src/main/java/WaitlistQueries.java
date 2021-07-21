@@ -18,7 +18,6 @@ public class WaitlistQueries {
     
     public static void addWaitlistEntry (String faculty, java.sql.Date date, int seats, Timestamp timestamp) {
         connection = DBConnection.getConnection();
-        timestamp = new Timestamp(Calendar.getInstance().getTime().getTime());
         try {
             addWaitlistEntry = connection.prepareStatement("INSERT INTO WAITLIST" 
                     + "(FACULTY, DATE, SEATS, TIMESTAMP" + "VALUES(?,?,?,?)");

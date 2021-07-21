@@ -31,10 +31,16 @@ public class RoomQueries {
         }
     }
     
-    public static ArrayList<RoomEntry> getAllPossibleRooms(String name, int seats) {
+    public static ArrayList<RoomEntry> getAllPossibleRooms(int seats) {
         connection = DBConnection.getConnection();
-        ArrayList<RoomEntry> possibleRooms = new ArrayList<>();
-        return possibleRooms;
+        ArrayList<RoomEntry> possibleRoom = new ArrayList<>();
+        try {
+            getAllPossibleRooms = connection.prepareStatement("SELECT FROM ROOMS WHERE SEATS IS GREATER THAN SEATS");
+        }
+        catch(SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return possibleRoom;
     }
     
     public static void dropRoom(String name, int seats) {
