@@ -59,7 +59,8 @@ public class BaseFrame extends javax.swing.JDialog {
         addDateTextField = new javax.swing.JTextField();
         addDateButton = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        statusWaitlistButton = new javax.swing.JButton();
+        statusWaitlistLabel = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         facultyComboBoxLabel2 = new javax.swing.JLabel();
         facultyComboBox2 = new javax.swing.JComboBox<>();
@@ -263,7 +264,12 @@ public class BaseFrame extends javax.swing.JDialog {
 
         statusFacultyButton.addTab("Add Date", jPanel4);
 
-        jButton1.setText("Display Waitlist");
+        statusWaitlistButton.setText("Display Waitlist");
+        statusWaitlistButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusWaitlistButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -271,15 +277,19 @@ public class BaseFrame extends javax.swing.JDialog {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(458, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(statusWaitlistButton, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statusWaitlistLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jButton1)
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addComponent(statusWaitlistButton)
+                .addGap(37, 37, 37)
+                .addComponent(statusWaitlistLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         statusFacultyButton.addTab("Static-Waiting List", jPanel5);
@@ -421,6 +431,12 @@ public class BaseFrame extends javax.swing.JDialog {
             statusFacultyLabel.setText(ReservationQueries.getReservationByFaculty(name).toString());
         }
     }//GEN-LAST:event_statusFacultySubmitActionPerformed
+
+    // Display waitlist
+    private void statusWaitlistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusWaitlistButtonActionPerformed
+        // TODO add your handling code here:
+        statusWaitlistLabel.setText(WaitlistQueries.getWaitlist().toString());
+    }//GEN-LAST:event_statusWaitlistButtonActionPerformed
     public void rebuildFacultyComboBoxes() {
         facultyComboBox.setModel(new javax.swing.DefaultComboBoxModel(Faculty.getAllFaculty().toArray()));
         facultyComboBox2.setModel(new javax.swing.DefaultComboBoxModel(Faculty.getAllFaculty().toArray()));
@@ -487,7 +503,6 @@ public class BaseFrame extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> facultyComboBox2;
     private javax.swing.JLabel facultyComboBoxLabel;
     private javax.swing.JLabel facultyComboBoxLabel2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -504,5 +519,7 @@ public class BaseFrame extends javax.swing.JDialog {
     private javax.swing.JTabbedPane statusFacultyButton;
     private javax.swing.JLabel statusFacultyLabel;
     private javax.swing.JButton statusFacultySubmit;
+    private javax.swing.JButton statusWaitlistButton;
+    private javax.swing.JLabel statusWaitlistLabel;
     // End of variables declaration//GEN-END:variables
 }

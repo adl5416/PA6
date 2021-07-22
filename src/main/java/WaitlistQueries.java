@@ -15,6 +15,7 @@ public class WaitlistQueries {
     private static PreparedStatement deleteWaitlistEntry;
     private static PreparedStatement getWaitlistByDate;
     private static PreparedStatement getWaitlistByFaculty;
+    private static PreparedStatement getWaitlist;
     
     public static void addWaitlistEntry (String faculty, java.sql.Date date, int seats, Timestamp timestamp) {
         connection = DBConnection.getConnection();
@@ -86,5 +87,26 @@ public class WaitlistQueries {
             sqlException.printStackTrace();
         }
         return facultyWaitlistArray;
+    }
+    
+    // Return the whole waitlist
+    public static ArrayList<WaitlistEntry> getWaitlist() {
+        connection = DBConnection.getConnection();
+        ArrayList<WaitlistEntry> getWaitlistArray = new ArrayList<>();
+        try {
+            getWaitlist = connection.prepareStatement("SELECT * FROM WAITLIST" + "ORDER BY (DATE, TIMESTAMP)");
+            ResultSet resultSet = getWaitlist.executeQuery();
+            while (resultSet.next()) {
+                getWaitlistArray.add(new WaitlistEntry(
+                resultSet.getString("faculty"),
+                resultSet.getDate("date"),
+                resultSet.getInt("seats"),
+                resultSet.getTimestamp("timestamp")));
+            }
+        }
+        catch(SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return getWaitlistArray;
     }
 }
