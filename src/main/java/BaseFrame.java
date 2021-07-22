@@ -34,7 +34,7 @@ public class BaseFrame extends javax.swing.JDialog {
     private void initComponents() {
 
         TitleLabel = new javax.swing.JLabel();
-        statusTab = new javax.swing.JTabbedPane();
+        statusFacultyButton = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         addFacultyLabel = new javax.swing.JLabel();
         addFacultyTextField = new javax.swing.JTextField();
@@ -50,10 +50,21 @@ public class BaseFrame extends javax.swing.JDialog {
         seatsRequiredTextField = new javax.swing.JTextField();
         reserveResultsLabel = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        dateComboBox2 = new javax.swing.JComboBox<>();
+        statusDateJLabel = new javax.swing.JLabel();
+        statusDateButton = new javax.swing.JButton();
+        statusDateSubmitLabel = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         addDateLabel = new javax.swing.JLabel();
         addDateTextField = new javax.swing.JTextField();
         addDateButton = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        facultyComboBoxLabel2 = new javax.swing.JLabel();
+        facultyComboBox2 = new javax.swing.JComboBox<>();
+        statusFacultySubmit = new javax.swing.JButton();
+        statusFacultyLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -100,10 +111,10 @@ public class BaseFrame extends javax.swing.JDialog {
                 .addComponent(addFacultyButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addFacultyResultsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
 
-        statusTab.addTab("Add Faculty", jPanel1);
+        statusFacultyButton.addTab("Add Faculty", jPanel1);
 
         dateComboBoxLabel.setText("Pick a Date:");
 
@@ -158,23 +169,60 @@ public class BaseFrame extends javax.swing.JDialog {
                     .addComponent(reserveButton))
                 .addGap(28, 28, 28)
                 .addComponent(reserveResultsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
-        statusTab.addTab("Reserve a Room", jPanel2);
+        statusFacultyButton.addTab("Reserve a Room", jPanel2);
+
+        dateComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateComboBox2ActionPerformed(evt);
+            }
+        });
+
+        statusDateJLabel.setText("Pick A Date");
+
+        statusDateButton.setText("Submit");
+        statusDateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusDateButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(statusDateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(statusDateSubmitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(statusDateJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(dateComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(405, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 301, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dateComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statusDateJLabel))
+                .addGap(34, 34, 34)
+                .addComponent(statusDateButton)
+                .addGap(18, 18, 18)
+                .addComponent(statusDateSubmitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
-        statusTab.addTab("Status", jPanel3);
+        statusFacultyButton.addTab("Status-Reservation By Date", jPanel3);
 
         addDateLabel.setText("Insert a Date:");
 
@@ -210,10 +258,82 @@ public class BaseFrame extends javax.swing.JDialog {
                     .addComponent(addDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(addDateButton)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
-        statusTab.addTab("Add Date", jPanel4);
+        statusFacultyButton.addTab("Add Date", jPanel4);
+
+        jButton1.setText("Display Waitlist");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(51, 51, 51)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(458, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jButton1)
+                .addContainerGap(252, Short.MAX_VALUE))
+        );
+
+        statusFacultyButton.addTab("Static-Waiting List", jPanel5);
+
+        facultyComboBoxLabel2.setText("Faculty Name:");
+
+        facultyComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        facultyComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                facultyComboBox2ActionPerformed(evt);
+            }
+        });
+
+        statusFacultySubmit.setText("Submit");
+        statusFacultySubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusFacultySubmitActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(218, 218, 218)
+                        .addComponent(statusFacultySubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(statusFacultyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(facultyComboBoxLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(facultyComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(359, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(facultyComboBoxLabel2)
+                    .addComponent(facultyComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48)
+                .addComponent(statusFacultySubmit)
+                .addGap(18, 18, 18)
+                .addComponent(statusFacultyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
+        );
+
+        statusFacultyButton.addTab("Status- Faculty", jPanel6);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -225,16 +345,16 @@ public class BaseFrame extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(statusTab)
+                .addComponent(statusFacultyButton)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(TitleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(statusTab)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(statusFacultyButton)
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -242,7 +362,7 @@ public class BaseFrame extends javax.swing.JDialog {
 
     private void addFacultyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFacultyButtonActionPerformed
         // TODO add your handling code here:
-        String name = addFacultyButton.getText();
+        String name = addFacultyTextField.getText();
         Faculty.addFaculty(name);
         addFacultyResultsLabel.setText(name + "has been added to the faculty");
         rebuildFacultyComboBoxes();
@@ -252,7 +372,7 @@ public class BaseFrame extends javax.swing.JDialog {
         // TODO add your handling code here:
         Date date = Date.parseDate(addDateTextField.getText());
         Dates.addDate(date);
-        rebuildFacultyComboBoxes();
+        rebuildDateComboBoxes();
     }//GEN-LAST:event_addDateButtonActionPerformed
 
     private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
@@ -262,14 +382,52 @@ public class BaseFrame extends javax.swing.JDialog {
         int seats = Integer.parseInt(seatsRequiredTextField.getText());
         Timestamp timestamp = new Timestamp(Calendar.getInstance().getTime().getTime());
         RoomQueries.getAllPossibleRooms(seats);
-        ReservationQueries.addReservationEntry(name, room, date, seats, timestamp);
-        reserveResultsLabel.setText("You have been reserved");
+        if (ReservationQueries.addReservationEntry(name, room, date, seats, timestamp) == null) {
+            WaitlistQueries.addWaitlistEntry(name, date, seats, timestamp);
+            reserveResultsLabel.setText("You have been added to the waitlist");
+        }
+        else {
+            ReservationQueries.addReservationEntry(name, room, date, seats, timestamp);
+            reserveResultsLabel.setText("You have been reserved");
+        }
     }//GEN-LAST:event_reserveButtonActionPerformed
+
+    private void dateComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateComboBox2ActionPerformed
+
+    private void statusDateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusDateButtonActionPerformed
+        // TODO add your handling code here:
+        Date date = (String) dateComboBox2.getSelectedItem();
+        statusDateSubmitLabel.setText(ReservationQueries.getReservationByDate(date).toString());
+    }//GEN-LAST:event_statusDateButtonActionPerformed
+
+    private void facultyComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_facultyComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_facultyComboBox2ActionPerformed
+
+    private void statusFacultySubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusFacultySubmitActionPerformed
+        // TODO add your handling code here:
+        String name = (String) facultyComboBox2.getSelectedItem();
+        if (ReservationQueries.getReservationByFaculty(name) == null) {
+            if (WaitlistQueries.getWaitlistByFaculty(name) == null) {
+                statusFacultyLabel.setText(WaitlistQueries.getWaitlistByFaculty(name).toString());
+            }
+            else {
+                statusFacultyLabel.setText(name + "is not of the faculty or the waitlist");
+            }
+        }
+        else {
+            statusFacultyLabel.setText(ReservationQueries.getReservationByFaculty(name).toString());
+        }
+    }//GEN-LAST:event_statusFacultySubmitActionPerformed
     public void rebuildFacultyComboBoxes() {
         facultyComboBox.setModel(new javax.swing.DefaultComboBoxModel(Faculty.getAllFaculty().toArray()));
+        facultyComboBox2.setModel(new javax.swing.DefaultComboBoxModel(Faculty.getAllFaculty().toArray()));
     }
     public void rebuildDateComboBoxes() {
         dateComboBox.setModel(new javax.swing.DefaultComboBoxModel(Dates.getAllDates().toArray()));
+        dateComboBox2.setModel(new javax.swing.DefaultComboBoxModel(Dates.getAllDates().toArray()));
     }
     /**
      * @param args the command line arguments
@@ -323,17 +481,28 @@ public class BaseFrame extends javax.swing.JDialog {
     private javax.swing.JLabel addFacultyResultsLabel;
     private javax.swing.JTextField addFacultyTextField;
     private javax.swing.JComboBox<String> dateComboBox;
+    private javax.swing.JComboBox<String> dateComboBox2;
     private javax.swing.JLabel dateComboBoxLabel;
     private javax.swing.JComboBox<String> facultyComboBox;
+    private javax.swing.JComboBox<String> facultyComboBox2;
     private javax.swing.JLabel facultyComboBoxLabel;
+    private javax.swing.JLabel facultyComboBoxLabel2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JButton reserveButton;
     private javax.swing.JLabel reserveResultsLabel;
     private javax.swing.JTextField seatsRequiredTextField;
-    private javax.swing.JTabbedPane statusTab;
+    private javax.swing.JButton statusDateButton;
+    private javax.swing.JLabel statusDateJLabel;
+    private javax.swing.JLabel statusDateSubmitLabel;
+    private javax.swing.JTabbedPane statusFacultyButton;
+    private javax.swing.JLabel statusFacultyLabel;
+    private javax.swing.JButton statusFacultySubmit;
     // End of variables declaration//GEN-END:variables
 }

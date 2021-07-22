@@ -48,7 +48,7 @@ public class WaitlistQueries {
         }
     }
     
-    public ArrayList<WaitlistEntry> getWaitlistByDate(java.sql.Date date) {
+    public static ArrayList<WaitlistEntry> getWaitlistByDate(java.sql.Date date) {
         connection = DBConnection.getConnection();
         ArrayList<WaitlistEntry> dateWaitlistArray = new ArrayList<>();
         try {
@@ -68,7 +68,7 @@ public class WaitlistQueries {
         return dateWaitlistArray;
     }
     
-    public ArrayList<WaitlistEntry> getWaitlistByFaculty(String faculty) {
+    public static ArrayList<WaitlistEntry> getWaitlistByFaculty(String faculty) {
         connection = DBConnection.getConnection();
         ArrayList<WaitlistEntry> facultyWaitlistArray = new ArrayList<>();
         try {

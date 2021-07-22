@@ -35,7 +35,8 @@ public class RoomQueries {
         connection = DBConnection.getConnection();
         ArrayList<RoomEntry> possibleRoom = new ArrayList<>();
         try {
-            getAllPossibleRooms = connection.prepareStatement("SELECT FROM ROOMS WHERE SEATS IS GREATER THAN SEATS");
+            getAllPossibleRooms = connection.prepareStatement("SELECT FROM ROOMS WHERE SEATS IS GREATER THAN seats");
+            ResultSet resultSet = getAllPossibleRooms.executeQuery();
         }
         catch(SQLException sqlException) {
             sqlException.printStackTrace();

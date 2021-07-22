@@ -52,7 +52,7 @@ public class ReservationQueries {
         }
     }
     
-    public ArrayList<ReservationEntry> getReservationByDate(java.sql.Date date) {
+    public static ArrayList<ReservationEntry> getReservationByDate(java.sql.Date date) {
         connection = DBConnection.getConnection();
         ArrayList<ReservationEntry> dateReservationArray = new ArrayList<>();
         try {
@@ -73,7 +73,7 @@ public class ReservationQueries {
         return dateReservationArray;
     }
     
-    public ArrayList<ReservationEntry> getReservationByFaculty(String faculty) {
+    public static ArrayList<ReservationEntry> getReservationByFaculty(String faculty) {
         connection = DBConnection.getConnection();
         ArrayList<ReservationEntry> facultyReservationArray = new ArrayList<>();
         try {
@@ -94,7 +94,7 @@ public class ReservationQueries {
         return facultyReservationArray;
     }
     
-    public ArrayList<String> getRoomsReservedByDate(String room) {
+    public static ArrayList<String> getRoomsReservedByDate(String room) {
         connection = DBConnection.getConnection();
         ArrayList<String> roomsReservationArray = new ArrayList<>();
         try {
