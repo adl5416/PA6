@@ -22,10 +22,6 @@ public class ReservationEntry {
         return room;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
     public int getSeats() {
         return seats;
     }
@@ -34,16 +30,17 @@ public class ReservationEntry {
         return timestamp;
     }
 
-    public ReservationEntry(String faculty, String room, Date date, int seats, Timestamp timestamp) {
+    public ReservationEntry(String faculty, String room, DateEntry date, int seats, Timestamp timestamp) {
         this.faculty = faculty;
         this.room = room;
         this.date = date;
         this.seats = seats;
         this.timestamp = timestamp;
+
     }
     String faculty;
     String room;
-    Date date;
+    DateEntry date;
     int seats;
     Timestamp timestamp;
 }

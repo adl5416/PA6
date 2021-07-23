@@ -33,15 +33,21 @@ public class RoomQueries {
     
     public static ArrayList<RoomEntry> getAllPossibleRooms(int seats) {
         connection = DBConnection.getConnection();
-        ArrayList<RoomEntry> possibleRoom = new ArrayList<>();
+        ArrayList<RoomEntry> allRooms = new ArrayList<>();
         try {
-            getAllPossibleRooms = connection.prepareStatement("SELECT FROM ROOMS WHERE SEATS IS GREATER THAN seats");
+            getAllPossibleRooms = connection.prepareStatement("SELECT * FROM ROOMS ORDER BY SEATS") ;
             ResultSet resultSet = getAllPossibleRooms.executeQuery();
+            while (resultSet.next()) {
+                allRooms.add(new RoomEntry(
+                resultSet.getString("name"),
+                resultSet.getInt("seats")));
+                break;
+            }
         }
         catch(SQLException sqlException) {
             sqlException.printStackTrace();
         }
-        return possibleRoom;
+        return allRooms;
     }
     
     public static void dropRoom(String name, int seats) {

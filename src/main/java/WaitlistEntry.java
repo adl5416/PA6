@@ -18,10 +18,6 @@ public class WaitlistEntry {
         return Faculty;
     }
 
-    public Date getDate() {
-        return date;
-    }
-
     public int getSeats() {
         return seats;
     }
@@ -30,14 +26,14 @@ public class WaitlistEntry {
         return timestamp;
     }
 
-    public WaitlistEntry(String Faculty, Date date, int seats, Timestamp timestamp) {
+    public WaitlistEntry(String Faculty, DateEntry date, int seats, Timestamp timestamp) {
         this.Faculty = Faculty;
         this.date = date;
         this.seats = seats;
         this.timestamp = timestamp;
     }
     String Faculty;
-    Date date;
+    DateEntry date;
     int seats;
     Timestamp timestamp;
 }

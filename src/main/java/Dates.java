@@ -16,11 +16,13 @@ public class Dates {
     private static PreparedStatement addDate;
     private static PreparedStatement getAllDates;
     
-    public static void addDate(java.sql.Date date) {
+    public static void addDate(int month, int day, int year) {
         connection = DBConnection.getConnection();
         try {
-            addDate = connection.prepareStatement("INSERT INTO DATES" + "DATE" + "(?)");
-            addDate.setDate(1, date);
+            addDate = connection.prepareStatement("INSERT INTO DATES" + "(MONTH, DAY, YEAR)" + "VALUES(?,?,?)");
+            addDate.setInt(1, month);
+            addDate.setInt(2, day);
+            addDate.setInt(3, year);
             addDate.executeUpdate();
         }
 
@@ -29,14 +31,17 @@ public class Dates {
         }
     }
     
-    public static ArrayList<java.sql.Date> getAllDates() {
+    public static ArrayList<DateEntry> getAllDates() {
         connection = DBConnection.getConnection();
-        ArrayList<java.sql.Date> datesArray = new ArrayList<>();
+        ArrayList<DateEntry> datesArray = new ArrayList<>();
         try {
-            getAllDates = connection.prepareStatement("SELECT * FROM DATES ORDER BY DATE");
+            getAllDates = connection.prepareStatement("SELECT * FROM DATES ORDER BY (YEAR, MONTH, DAY)");
             ResultSet resultSet = getAllDates.executeQuery();
             while (resultSet.next()) {
-                datesArray.add(resultSet.getDate(1));
+                datesArray.add(new DateEntry(
+                resultSet.getInt("month"),
+                resultSet.getInt("day"),
+                resultSet.getInt("year")));
             }
         }
         catch(SQLException sqlException) {
