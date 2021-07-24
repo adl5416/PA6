@@ -417,6 +417,9 @@ public class BaseFrame extends javax.swing.JDialog {
         int month = Integer.parseInt((String) monthComboBox.getSelectedItem());
         int day = Integer.parseInt((String) dayComboBox.getSelectedItem());
         int year = Integer.parseInt(yearTextField.getText());
+        if (DateEntry.CheckDate(month, day, year) == false) {
+            addDateTextField.setText("Enter a valid date");
+        }
         Dates.addDate(month, day, year);
         addDateTextField.setText("The Date has been added");
         rebuildDateComboBoxes();
@@ -425,15 +428,15 @@ public class BaseFrame extends javax.swing.JDialog {
     private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
         // TODO add your handling code here:
         String name = (String) facultyComboBox.getSelectedItem();
-        String date = (String) dateComboBox.getSelectedItem();
+        DateEntry date = (DateEntry) dateComboBox.getSelectedItem();
         int seats = Integer.parseInt(seatsRequiredTextField.getText());
         Timestamp timestamp = new Timestamp(Calendar.getInstance().getTime().getTime());
-        if (DateEntry.CheckDate(month, day, year) == false) {
+        if (DateEntry.CheckDate(date.getMonth(), date.getDay(), date.getYear()) == false) {
             reserveResultsLabel.setText("Enter a valid date");
         }
-        for (int i = 0; i < RoomQueries.getAllPossibleRooms(seats).size(); i++) {
-            if (RoomQueries.getAllPossibleRooms(seats).get(i).getSeats() >= seats) {
-                if (ReservationQueries.addReservationEntry(name, RoomQueries.getAllPossibleRooms(seats).get(i).getName(), date, seats, timestamp) == false) {
+        for (int i = 0; i < RoomQueries.getAllPossibleRooms().size(); i++) {
+            if (RoomQueries.getAllPossibleRooms().get(i).getSeats() >= seats) {
+                if (ReservationQueries.addReservationEntry(name, RoomQueries.getAllPossibleRooms().get(i).getName(), date, seats, timestamp) == false) {
                     WaitlistQueries.addWaitlistEntry(name, date, seats, timestamp);
                     reserveResultsLabel.setText("You have been added to the waitlist");
                 } else {
@@ -449,7 +452,7 @@ public class BaseFrame extends javax.swing.JDialog {
 
     private void statusDateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusDateButtonActionPerformed
         // TODO add your handling code here:
-        Date date = (String) dateComboBox2.getSelectedItem();
+        DateEntry date = (DateEntry) dateComboBox2.getSelectedItem();
         statusDateSubmitLabel.setText(ReservationQueries.getReservationByDate(date).toString());
     }//GEN-LAST:event_statusDateButtonActionPerformed
 

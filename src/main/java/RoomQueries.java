@@ -31,9 +31,9 @@ public class RoomQueries {
         }
     }
     
-    public static ArrayList<RoomEntry> getAllPossibleRooms(int seats) {
+    public static ArrayList<RoomEntry> getAllPossibleRooms() {
         connection = DBConnection.getConnection();
-        ArrayList<RoomEntry> allRooms = new ArrayList<>();
+        ArrayList<RoomEntry> allRooms = new ArrayList<RoomEntry>();
         try {
             getAllPossibleRooms = connection.prepareStatement("SELECT * FROM ROOMS ORDER BY SEATS") ;
             ResultSet resultSet = getAllPossibleRooms.executeQuery();
@@ -41,7 +41,7 @@ public class RoomQueries {
                 allRooms.add(new RoomEntry(
                 resultSet.getString("name"),
                 resultSet.getInt("seats")));
-                break;
+                // break
             }
         }
         catch(SQLException sqlException) {

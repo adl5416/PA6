@@ -42,7 +42,7 @@ public class ReservationQueries {
         connection = DBConnection.getConnection();
         try {
             addReservationEntry = connection.prepareStatement("INSERT INTO RESERVATIONS"
-                + "(FACULTY, ROOM, SEATS, TIMESTAMP, MONTH, DAY, YEARS)" + "VALUES(?,?,?,?,?,?,?");
+                + "(FACULTY, ROOM, SEATS, MONTH, DAY, YEARS, TIMESTAMP)" + "VALUES(?,?,?,?,?,?,?");
             addReservationEntry.setString(1, name);
             addReservationEntry.setString(2, room);
             addReservationEntry.setInt(3, seats);
@@ -61,7 +61,7 @@ public class ReservationQueries {
         connection = DBConnection.getConnection();
         ArrayList<ReservationEntry> dateReservationArray = new ArrayList<ReservationEntry>();
         try {
-            getReservationByDate = connection.prepareStatement("SELECT * FROM RESERVATIONS WHERE (MONTH, DAY, YEAR) LIKE (?,?,?)" + "ORDER BY FACULTY");
+            getReservationByDate = connection.prepareStatement("SELECT * FROM RESERVATIONS WHERE (MONTH, DAY, YEARS) LIKE (?,?,?)" + "ORDER BY FACULTY");
             getReservationByDate.setInt(1, date.getMonth());
             getReservationByDate.setInt(2, date.getDay());
             getReservationByDate.setInt(3, date.getYear());
@@ -73,7 +73,7 @@ public class ReservationQueries {
                 new DateEntry(
                 resultSet.getInt("month"),
                 resultSet.getInt("day"),
-                resultSet.getInt("year")),
+                resultSet.getInt("years")),
                 resultSet.getInt("seats"),
                 resultSet.getTimestamp("timestamp")));
             }
@@ -86,7 +86,7 @@ public class ReservationQueries {
     
     public static ArrayList<ReservationEntry> getReservationByFaculty(String faculty) {
         connection = DBConnection.getConnection();
-        ArrayList<ReservationEntry> facultyReservationArray = new ArrayList<>();
+        ArrayList<ReservationEntry> facultyReservationArray = new ArrayList<ReservationEntry>();
         try {
             getReservationByFaculty = connection.prepareStatement("SELECT * FROM RESERVATIONS WHERE FACULTY LIKE VALUES(?)" + "ORDER BY FACULTY");
             ResultSet resultSet = getReservationByFaculty.executeQuery();
@@ -96,7 +96,7 @@ public class ReservationQueries {
                 resultSet.getString("room"),
                 new DateEntry(resultSet.getInt("month"),
                 resultSet.getInt("day"),
-                resultSet.getInt("year")),
+                resultSet.getInt("years")),
                 resultSet.getInt("seats"),
                 resultSet.getTimestamp("timestamp")));
             }
@@ -107,9 +107,10 @@ public class ReservationQueries {
         return facultyReservationArray;
     }
     
+    // needs fixed
     public static ArrayList<String> getRoomsReservedByDate(String room) {
         connection = DBConnection.getConnection();
-        ArrayList<String> roomsReservationArray = new ArrayList<>();
+        ArrayList<String> roomsReservationArray = new ArrayList<String>();
         try {
             getRoomsReservedByDate = connection.prepareStatement("SELECT * ROOM FROM RESERVATIONS WHERE DATE LIKE (?)" + "ORDER BY ROOM");
             ResultSet resultSet = getRoomsReservedByDate.executeQuery();

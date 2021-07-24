@@ -21,7 +21,7 @@ public class WaitlistQueries {
         connection = DBConnection.getConnection();
         try {
             addWaitlistEntry = connection.prepareStatement("INSERT INTO WAITLIST" 
-                    + "(FACULTY, MONTH, DAY, YEAR, SEATS, TIMESTAMP" + "VALUES(?,?,?,?,?,?)");
+                    + "(FACULTY, MONTH, DAY, YEARS, SEATS, TIMESTAMP" + "VALUES(?,?,?,?,?,?)");
             addWaitlistEntry.setString(1, faculty);
             addWaitlistEntry.setInt(2, date.getMonth());
             addWaitlistEntry.setInt(3, date.getDay());
@@ -39,7 +39,7 @@ public class WaitlistQueries {
         connection = DBConnection.getConnection();
         try {
             deleteWaitlistEntry = connection.prepareStatement("DELETE FROM WAITLIST" 
-                    + "(FACULTY, MONTH, DAY, YEAR, SEATS, TIMESTAMP" + "VALUES(?,?,?,?,?,?)");
+                    + "(FACULTY, MONTH, DAY, YEARS, SEATS, TIMESTAMP" + "VALUES(?,?,?,?,?,?)");
             addWaitlistEntry.setString(1, null);
             addWaitlistEntry.setInt(2, 0);
             addWaitlistEntry.setInt(3, 0);
@@ -55,9 +55,9 @@ public class WaitlistQueries {
     
     public static ArrayList<WaitlistEntry> getWaitlistByDate(DateEntry date) {
         connection = DBConnection.getConnection();
-        ArrayList<WaitlistEntry> dateWaitlistArray = new ArrayList<>();
+        ArrayList<WaitlistEntry> dateWaitlistArray = new ArrayList<WaitlistEntry>();
         try {
-            getWaitlistByDate = connection.prepareStatement("SELECT * WAITLIST WHERE (MONTH,DAY,YEAR) LIKE (?,?,?) ORDER BY FACULTY");
+            getWaitlistByDate = connection.prepareStatement("SELECT * WAITLIST WHERE (MONTH,DAY,YEARS) LIKE (?,?,?) ORDER BY FACULTY");
             getWaitlistByDate.setInt(1, date.getMonth());
             getWaitlistByDate.setInt(2, date.getDay());
             getWaitlistByDate.setInt(3, date.getYear());
@@ -68,7 +68,7 @@ public class WaitlistQueries {
                 new DateEntry(
                 resultSet.getInt("month"),
                 resultSet.getInt("day"),
-                resultSet.getInt("year")),
+                resultSet.getInt("years")),
                 resultSet.getInt("seats"),
                 resultSet.getTimestamp("timestamp")));
             }
@@ -81,7 +81,7 @@ public class WaitlistQueries {
     
     public static ArrayList<WaitlistEntry> getWaitlistByFaculty(String faculty) {
         connection = DBConnection.getConnection();
-        ArrayList<WaitlistEntry> facultyWaitlistArray = new ArrayList<>();
+        ArrayList<WaitlistEntry> facultyWaitlistArray = new ArrayList<WaitlistEntry>();
         try {
             getWaitlistByFaculty = connection.prepareStatement("SELECT FROM WAITLIST WHERE FACULTY LIKE (?) ORDER BY FACULTY");
             ResultSet resultSet = getWaitlistByFaculty.executeQuery();
@@ -90,7 +90,7 @@ public class WaitlistQueries {
                 resultSet.getString("faculty"),
                 new DateEntry(resultSet.getInt("month"),
                 resultSet.getInt("day"),
-                resultSet.getInt("year")),
+                resultSet.getInt("years")),
                 resultSet.getInt("seats"),
                 resultSet.getTimestamp("timestamp")));
             }
@@ -104,16 +104,16 @@ public class WaitlistQueries {
     // Return the whole waitlist
     public static ArrayList<WaitlistEntry> getWaitlist() {
         connection = DBConnection.getConnection();
-        ArrayList<WaitlistEntry> getWaitlistArray = new ArrayList<>();
+        ArrayList<WaitlistEntry> getWaitlistArray = new ArrayList<WaitlistEntry>();
         try {
-            getWaitlist = connection.prepareStatement("SELECT * FROM WAITLIST ORDER BY (YEAR, MONTH, DAY, TIMESTAMP)");
+            getWaitlist = connection.prepareStatement("SELECT * FROM WAITLIST ORDER BY (YEARS, MONTH, DAY, TIMESTAMP)");
             ResultSet resultSet = getWaitlist.executeQuery();
             while (resultSet.next()) {
                 getWaitlistArray.add(new WaitlistEntry(
                 resultSet.getString("faculty"),
                 new DateEntry(resultSet.getInt("month"),
                 resultSet.getInt("day"),
-                resultSet.getInt("year")),
+                resultSet.getInt("years")),
                 resultSet.getInt("seats"),
                 resultSet.getTimestamp("timestamp")));
             }
