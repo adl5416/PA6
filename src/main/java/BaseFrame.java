@@ -419,10 +419,11 @@ public class BaseFrame extends javax.swing.JDialog {
         int year = Integer.parseInt(yearTextField.getText());
         if (DateEntry.CheckDate(month, day, year) == false) {
             addDateTextField.setText("Enter a valid date");
+        } else {
+            Dates.addDate(month, day, year);
+            addDateTextField.setText("The Date has been added");
+            rebuildDateComboBoxes();
         }
-        Dates.addDate(month, day, year);
-        addDateTextField.setText("The Date has been added");
-        rebuildDateComboBoxes();
     }//GEN-LAST:event_addDateButtonActionPerformed
 
     private void reserveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveButtonActionPerformed
@@ -431,18 +432,29 @@ public class BaseFrame extends javax.swing.JDialog {
         DateEntry date = (DateEntry) dateComboBox.getSelectedItem();
         int seats = Integer.parseInt(seatsRequiredTextField.getText());
         Timestamp timestamp = new Timestamp(Calendar.getInstance().getTime().getTime());
-        if (DateEntry.CheckDate(date.getMonth(), date.getDay(), date.getYear()) == false) {
-            reserveResultsLabel.setText("Enter a valid date");
-        }
+        boolean roomFound = true;
         for (int i = 0; i < RoomQueries.getAllPossibleRooms().size(); i++) {
+            // if you find a room with the right ammount of seats
             if (RoomQueries.getAllPossibleRooms().get(i).getSeats() >= seats) {
-                if (ReservationQueries.addReservationEntry(name, RoomQueries.getAllPossibleRooms().get(i).getName(), date, seats, timestamp) == false) {
-                    WaitlistQueries.addWaitlistEntry(name, date, seats, timestamp);
-                    reserveResultsLabel.setText("You have been added to the waitlist");
-                } else {
-                    reserveResultsLabel.setText("You have been reserved");
+                // check date if it's in date room entry array. If in array, you can't reserve this room
+                for (int j = 0; j < RoomQueries.getAllPossibleRooms().get(i).getDateRoomEntry().size(); j++) {
+                    if (date.equals(RoomQueries.getAllPossibleRooms().get(i).getDateRoomEntry().get(j))) {
+                        // if date requested is in Date RoomEntry, break and try next room
+                        roomFound = false;
+                        break;
+                    }
+                    roomFound = true;
                 }
+                // after all dates are checked, you can be reserved for this date
             }
+            if (roomFound == true) {
+                ReservationQueries.addReservationEntry(name, RoomQueries.getAllPossibleRooms().get(i).getName(), date, seats, timestamp);
+                RoomQueries.getAllPossibleRooms().get(i).addDate(date);
+                break;
+            }
+        }
+        if (roomFound == false) {
+                WaitlistQueries.addWaitlistEntry(name, date, seats, timestamp);
         }
     }//GEN-LAST:event_reserveButtonActionPerformed
 

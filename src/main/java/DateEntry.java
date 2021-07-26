@@ -48,7 +48,7 @@ public class DateEntry {
     
     public static boolean CheckDate(int month, int day, int year) {
         Calendar calendar = Calendar.getInstance();
-        if ((month == 2 && day == 29) || (month == 2 && day == 30) || (month == 2 && day == 31)) {
+        if (month == 2 && day >= 29) {
             return false;
         }
         if (year < calendar.get(Calendar.YEAR) || month < calendar.get(Calendar.MONTH) || day < calendar.get(Calendar.DATE)) {
@@ -61,6 +61,17 @@ public class DateEntry {
     public String toString() {
         String output = getMonth() + " " + getDay() + " " + getYear();
         return output;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof DateEntry) {
+            final DateEntry f = (DateEntry) o;
+            if (f.getMonth() == month && f.getDay() == day && f.getYear() == year) {
+                return true;
+            }
+        }
+        return false;
     }
     
 }

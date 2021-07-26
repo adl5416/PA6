@@ -61,7 +61,7 @@ public class ReservationQueries {
         connection = DBConnection.getConnection();
         ArrayList<ReservationEntry> dateReservationArray = new ArrayList<ReservationEntry>();
         try {
-            getReservationByDate = connection.prepareStatement("SELECT * FROM RESERVATIONS WHERE (MONTH, DAY, YEARS) LIKE (?,?,?)" + "ORDER BY FACULTY");
+            getReservationByDate = connection.prepareStatement("SELECT * FROM RESERVATIONS WHERE (MONTH,DAY,YEARS) LIKE (?,?,?)" + "ORDER BY FACULTY");
             getReservationByDate.setInt(1, date.getMonth());
             getReservationByDate.setInt(2, date.getDay());
             getReservationByDate.setInt(3, date.getYear());
