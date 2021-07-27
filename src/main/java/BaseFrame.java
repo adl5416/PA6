@@ -22,6 +22,7 @@ public class BaseFrame extends javax.swing.JDialog {
         initComponents();
         rebuildFacultyComboBoxes();
         rebuildDateComboBoxes();
+        rebuildRoomComboBoxes();
     }
 
     /**
@@ -71,6 +72,19 @@ public class BaseFrame extends javax.swing.JDialog {
         facultyComboBox2 = new javax.swing.JComboBox<>();
         statusFacultySubmit = new javax.swing.JButton();
         statusFacultyLabel = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        dropRoomButton = new javax.swing.JButton();
+        dropRoomLabel2 = new javax.swing.JLabel();
+        roomComboBox = new javax.swing.JComboBox<>();
+        dropRoomLabel = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        addRoomNameTextField = new javax.swing.JTextField();
+        addRoomSeatsTextField = new javax.swing.JTextField();
+        addRoomButton = new javax.swing.JButton();
+        addRoomLabel = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -117,7 +131,7 @@ public class BaseFrame extends javax.swing.JDialog {
                 .addComponent(addFacultyButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addFacultyResultsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         statusFacultyButton.addTab("Add Faculty", jPanel1);
@@ -175,7 +189,7 @@ public class BaseFrame extends javax.swing.JDialog {
                     .addComponent(reserveButton))
                 .addGap(28, 28, 28)
                 .addComponent(reserveResultsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         statusFacultyButton.addTab("Reserve a Room", jPanel2);
@@ -225,7 +239,7 @@ public class BaseFrame extends javax.swing.JDialog {
                 .addComponent(statusDateButton)
                 .addGap(18, 18, 18)
                 .addComponent(statusDateSubmitLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         statusFacultyButton.addTab("Status-Reservation By Date", jPanel3);
@@ -289,7 +303,7 @@ public class BaseFrame extends javax.swing.JDialog {
                     .addComponent(dayComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(dayLabel)
                     .addComponent(addDateButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(yearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(yearLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,7 +337,7 @@ public class BaseFrame extends javax.swing.JDialog {
                 .addGap(21, 21, 21)
                 .addComponent(statusWaitlistButton)
                 .addGap(37, 37, 37)
-                .addComponent(statusWaitlistLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                .addComponent(statusWaitlistLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -374,10 +388,122 @@ public class BaseFrame extends javax.swing.JDialog {
                 .addComponent(statusFacultySubmit)
                 .addGap(18, 18, 18)
                 .addComponent(statusFacultyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         statusFacultyButton.addTab("Status- Faculty", jPanel6);
+
+        dropRoomButton.setText("Drop Room");
+        dropRoomButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dropRoomButtonActionPerformed(evt);
+            }
+        });
+
+        dropRoomLabel2.setText("Room:");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(275, 275, 275)
+                        .addComponent(dropRoomButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(dropRoomLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(roomComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(dropRoomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dropRoomLabel2)
+                    .addComponent(roomComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addComponent(dropRoomButton)
+                .addGap(35, 35, 35)
+                .addComponent(dropRoomLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        statusFacultyButton.addTab("Drop Room", jPanel7);
+
+        jLabel2.setText("Name:");
+
+        jLabel3.setText("Seats");
+
+        addRoomButton.setText("Add Room");
+        addRoomButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addRoomButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(addRoomSeatsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addRoomNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(205, 205, 205)
+                        .addComponent(addRoomButton)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(addRoomLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(addRoomNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(addRoomSeatsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(addRoomButton)
+                .addContainerGap(139, Short.MAX_VALUE))
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(addRoomLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        statusFacultyButton.addTab("Add Room", jPanel8);
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 650, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 280, Short.MAX_VALUE)
+        );
+
+        statusFacultyButton.addTab("Cancel Reservation", jPanel9);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -433,11 +559,11 @@ public class BaseFrame extends javax.swing.JDialog {
         int seats = Integer.parseInt(seatsRequiredTextField.getText());
         Timestamp timestamp = new Timestamp(Calendar.getInstance().getTime().getTime());
         boolean roomFound = true;
-        for (int i = 0; i < RoomQueries.getAllPossibleRooms().size(); i++) {
+        for (int i = 0; i <= RoomQueries.getAllPossibleRooms().size(); i++) {
             // if you find a room with the right ammount of seats
             if (RoomQueries.getAllPossibleRooms().get(i).getSeats() >= seats) {
                 // check date if it's in date room entry array. If in array, you can't reserve this room
-                for (int j = 0; j < RoomQueries.getAllPossibleRooms().get(i).getDateRoomEntry().size(); j++) {
+                for (int j = 0; j <= RoomQueries.getAllPossibleRooms().get(i).getDateRoomEntry().size(); j++) {
                     if (date.equals(RoomQueries.getAllPossibleRooms().get(i).getDateRoomEntry().get(j))) {
                         // if date requested is in Date RoomEntry, break and try next room
                         roomFound = false;
@@ -450,11 +576,15 @@ public class BaseFrame extends javax.swing.JDialog {
             if (roomFound == true) {
                 ReservationQueries.addReservationEntry(name, RoomQueries.getAllPossibleRooms().get(i).getName(), date, seats, timestamp);
                 RoomQueries.getAllPossibleRooms().get(i).addDate(date);
+                reserveResultsLabel.setText(name + " has been reserved for Room: " + RoomQueries.getAllPossibleRooms().get(i).getName()
+                        + " Date: " + date.toString() + "Seats: " + seats);
                 break;
             }
         }
         if (roomFound == false) {
                 WaitlistQueries.addWaitlistEntry(name, date, seats, timestamp);
+                reserveResultsLabel.setText(name + " has been added to the waitlist for Date: "
+                        + date  + " Seats: " + seats);
         }
     }//GEN-LAST:event_reserveButtonActionPerformed
 
@@ -475,15 +605,20 @@ public class BaseFrame extends javax.swing.JDialog {
     private void statusFacultySubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusFacultySubmitActionPerformed
         // TODO add your handling code here:
         String name = (String) facultyComboBox2.getSelectedItem();
-        if (ReservationQueries.getReservationByFaculty(name) == null) {
-            if (WaitlistQueries.getWaitlistByFaculty(name) == null) {
-                statusFacultyLabel.setText(name + "is not on the faculty or the waitlist");
-            } else {
-                statusFacultyLabel.setText(WaitlistQueries.getWaitlistByFaculty(name).toString());
+        String status = "";
+        for (int i = 0; i <= ReservationQueries.getReservationByFaculty(name).size(); i++) {
+            if (name == ReservationQueries.getReservationByFaculty(name).get(i).getFaculty() ) {
+                status += ReservationQueries.getReservationByFaculty(name).get(i).getRoom()
+                        + " " + ReservationQueries.getReservationByFaculty(name).get(i).getDate().toString();
             }
-        } else {
-            statusFacultyLabel.setText(ReservationQueries.getReservationByFaculty(name).toString());
         }
+        for (int j = 0; j <= WaitlistQueries.getWaitlistByFaculty(name).size(); j++) {
+            if (name == WaitlistQueries.getWaitlistByFaculty(name).get(j).getFaculty()) {
+                status += " " + WaitlistQueries.getWaitlistByFaculty(name).get(j).getSeats()
+                        + " " + WaitlistQueries.getWaitlistByFaculty(name).get(j).getDate().toString();
+            }
+        }
+        statusFacultyLabel.setText(status);
     }//GEN-LAST:event_statusFacultySubmitActionPerformed
 
     // Display waitlist
@@ -495,6 +630,100 @@ public class BaseFrame extends javax.swing.JDialog {
     private void monthComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_monthComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_monthComboBoxActionPerformed
+
+    // review function to check for errors
+    private void dropRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dropRoomButtonActionPerformed
+        // TODO add your handling code here:
+        String room = (String) roomComboBox.getSelectedItem();
+        String output = "";
+        // For every reservation that has this room
+        for  (int k = 0; k <= ReservationQueries.getReservationByRoom(room).size(); k++) {
+            if (room == ReservationQueries.getReservationByRoom(room).get(k).getRoom()) {
+                String name = ReservationQueries.getReservationByRoom(room).get(k).getFaculty();
+                DateEntry date = ReservationQueries.getReservationByRoom(room).get(k).getDate();
+                Timestamp timestamp = ReservationQueries.getReservationByRoom(room).get(k).getTimestamp();
+                int seats = ReservationQueries.getReservationByRoom(room).get(k).getSeats();
+                // RoomQueries.getAllPossibleRooms().get(k).remove(k); how to remove from array list
+                boolean roomFound = true;
+                for (int i = 0; i <= RoomQueries.getAllPossibleRooms().size(); i++) {
+                    // if you find a room with the right ammount of seats
+                    if (RoomQueries.getAllPossibleRooms().get(i).getSeats() >= seats) {
+                        // check date if it's in date room entry array. If in array, you can't reserve this room
+                        for (int j = 0; j <= RoomQueries.getAllPossibleRooms().get(i).getDateRoomEntry().size(); j++) {
+                            if (date.equals(RoomQueries.getAllPossibleRooms().get(i).getDateRoomEntry().get(j))) {
+                                // if date requested is in Date RoomEntry, break and try next room
+                                roomFound = false;
+                                break;
+                            }
+                            roomFound = true;
+                        }
+                        // after all dates are checked, you can be reserved for this date
+                    }
+                    if (roomFound == true) {
+                        ReservationQueries.addReservationEntry(name, RoomQueries.getAllPossibleRooms().get(i).getName(), date, seats, timestamp);
+                        RoomQueries.getAllPossibleRooms().get(i).addDate(date);
+                        output += (name + " has been reserved for Room: " + RoomQueries.getAllPossibleRooms().get(i).getName()
+                        + "Date: " + date.toString() + "Seats: " + seats + "/n");
+                        break;
+                    }
+                }
+                if (roomFound == false) {
+                    WaitlistQueries.addWaitlistEntry(name, date, seats, timestamp);
+                    output += (name + " has been added to the waitlist for Date: "
+                    + date  + " Seats: " + seats + "/n");
+                }
+            }
+
+        }
+        // RoomQueries.dropRoom(room, room); needs function to search for specific rooms
+        dropRoomLabel.setText(output);
+        rebuildRoomComboBoxes();
+    }//GEN-LAST:event_dropRoomButtonActionPerformed
+
+    // review function to check for errors
+    private void addRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoomButtonActionPerformed
+        // TODO add your handling code here:
+        String roomName = addRoomNameTextField.getText();
+        int roomSeats = Integer.parseInt(addRoomSeatsTextField.getText());
+        String output = "";   
+        RoomQueries.addRoom(roomName, roomSeats);
+        for  (int k = 0; k <= WaitlistQueries.getWaitlist().size(); k++) {
+            String name = WaitlistQueries.getWaitlist().get(k).getFaculty();
+            DateEntry date = WaitlistQueries.getWaitlist().get(k).getDate();
+            Timestamp timestamp = WaitlistQueries.getWaitlist().get(k).getTimestamp();
+            int seats = WaitlistQueries.getWaitlist().get(k).getSeats();
+            boolean roomFound = true;
+            for (int i = 0; i <= RoomQueries.getAllPossibleRooms().size(); i++) {
+                // if you find a room with the right ammount of seats
+                if (RoomQueries.getAllPossibleRooms().get(i).getSeats() >= seats) {
+                    // check date if it's in date room entry array. If in array, you can't reserve this room
+                    for (int j = 0; j <= RoomQueries.getAllPossibleRooms().get(j).getDateRoomEntry().size();j++) {
+                        if (date.equals(RoomQueries.getAllPossibleRooms().get(i).getDateRoomEntry().get(j))) {
+                            // if date requested is in Date RoomEntry, break and try next room
+                            roomFound = false;
+                            break;
+                        }
+                        roomFound = true;
+                    }
+                    // after all dates are checked, you can be reserved for this date
+                }
+                if (roomFound == true) {
+                    ReservationQueries.addReservationEntry(name, RoomQueries.getAllPossibleRooms().get(i).getName(), date, seats, timestamp);
+                    RoomQueries.getAllPossibleRooms().get(i).addDate(date);
+                    output += (name + " has not been reserved for Room: " + RoomQueries.getAllPossibleRooms().get(i).getName()
+                    + "Date: " + date.toString() + "Seats: " + seats + "/n");
+                    WaitlistQueries.deleteWaitlistEntry(name, date, seats, timestamp);
+                    break;
+                }
+            }
+            if (roomFound == false) {
+                output += (name + " has not been kept to the waitlist because"
+                        + "there is not a room avalible" + "/n");
+            }
+        }
+        addRoomLabel.setText(output);
+        rebuildRoomComboBoxes();
+    }//GEN-LAST:event_addRoomButtonActionPerformed
     public void rebuildFacultyComboBoxes() {
         facultyComboBox.setModel(new javax.swing.DefaultComboBoxModel(Faculty.getAllFaculty().toArray()));
         facultyComboBox2.setModel(new javax.swing.DefaultComboBoxModel(Faculty.getAllFaculty().toArray()));
@@ -503,6 +732,10 @@ public class BaseFrame extends javax.swing.JDialog {
     public void rebuildDateComboBoxes() {
         dateComboBox.setModel(new javax.swing.DefaultComboBoxModel(Dates.getAllDates().toArray()));
         dateComboBox2.setModel(new javax.swing.DefaultComboBoxModel(Dates.getAllDates().toArray()));
+    }
+    
+    public void rebuildRoomComboBoxes() {
+        roomComboBox.setModel(new javax.swing.DefaultComboBoxModel(RoomQueries.getAllPossibleRooms().toArray()));
     }
 
     /**
@@ -555,26 +788,39 @@ public class BaseFrame extends javax.swing.JDialog {
     private javax.swing.JLabel addFacultyLabel;
     private javax.swing.JLabel addFacultyResultsLabel;
     private javax.swing.JTextField addFacultyTextField;
+    private javax.swing.JButton addRoomButton;
+    private javax.swing.JLabel addRoomLabel;
+    private javax.swing.JTextField addRoomNameTextField;
+    private javax.swing.JTextField addRoomSeatsTextField;
     private javax.swing.JComboBox<String> dateComboBox;
     private javax.swing.JComboBox<String> dateComboBox2;
     private javax.swing.JLabel dateComboBoxLabel;
     private javax.swing.JComboBox<String> dayComboBox;
     private javax.swing.JLabel dayLabel;
+    private javax.swing.JButton dropRoomButton;
+    private javax.swing.JLabel dropRoomLabel;
+    private javax.swing.JLabel dropRoomLabel2;
     private javax.swing.JComboBox<String> facultyComboBox;
     private javax.swing.JComboBox<String> facultyComboBox2;
     private javax.swing.JLabel facultyComboBoxLabel;
     private javax.swing.JLabel facultyComboBoxLabel2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JComboBox<String> monthComboBox;
     private javax.swing.JLabel monthLabel;
     private javax.swing.JButton reserveButton;
     private javax.swing.JLabel reserveResultsLabel;
+    private javax.swing.JComboBox<String> roomComboBox;
     private javax.swing.JTextField seatsRequiredTextField;
     private javax.swing.JButton statusDateButton;
     private javax.swing.JLabel statusDateJLabel;

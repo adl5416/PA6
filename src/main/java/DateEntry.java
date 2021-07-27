@@ -59,7 +59,7 @@ public class DateEntry {
     
     @Override
     public String toString() {
-        String output = getMonth() + " " + getDay() + " " + getYear();
+        String output = getMonth() + "/ " + getDay() + "/ " + getYear();
         return output;
     }
     

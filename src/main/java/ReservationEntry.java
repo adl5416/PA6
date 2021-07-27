@@ -41,6 +41,10 @@ public class ReservationEntry {
     String faculty;
     String room;
     DateEntry date;
+
+    public DateEntry getDate() {
+        return date;
+    }
     int seats;
     Timestamp timestamp;
 }

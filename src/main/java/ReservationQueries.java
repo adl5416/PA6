@@ -17,7 +17,7 @@ public class ReservationQueries {
     private static PreparedStatement getReservationByFaculty;
     private static PreparedStatement getRoomsReservedByDate;
     
-    public static boolean addReservationEntry(String name, String room, DateEntry date, int seats, Timestamp timestamp) {
+    public static void addReservationEntry(String name, String room, DateEntry date, int seats, Timestamp timestamp) {
         connection = DBConnection.getConnection();
         try {
             addReservationEntry = connection.prepareStatement("INSERT INTO RESERVATIONS"
@@ -30,26 +30,24 @@ public class ReservationQueries {
             addReservationEntry.setInt(6, seats);
             addReservationEntry.setTimestamp(7, timestamp);
             addReservationEntry.executeUpdate();
-            return true;
         }
         catch(SQLException sqlException) {
             sqlException.printStackTrace();
         }
-        return false;
     }
     
     public static void deleteReservation(String name, String room, int seats, DateEntry date, Timestamp timestamp) {
         connection = DBConnection.getConnection();
         try {
-            addReservationEntry = connection.prepareStatement("INSERT INTO RESERVATIONS"
+            addReservationEntry = connection.prepareStatement("DELETE FROM RESERVATIONS"
                 + "(FACULTY, ROOM, SEATS, MONTH, DAY, YEARS, TIMESTAMP)" + "VALUES(?,?,?,?,?,?,?");
-            addReservationEntry.setString(1, name);
-            addReservationEntry.setString(2, room);
-            addReservationEntry.setInt(3, seats);
-            addReservationEntry.setTimestamp(4, timestamp);
-            addReservationEntry.setInt(5, date.getMonth());
-            addReservationEntry.setInt(6, date.getDay());
-            addReservationEntry.setInt(7, date.getYear());
+            addReservationEntry.setString(1, null);
+            addReservationEntry.setString(2, null);
+            addReservationEntry.setInt(3, 0);
+            addReservationEntry.setInt(4, 0);
+            addReservationEntry.setInt(5, 0);
+            addReservationEntry.setInt(6, 0);
+            addReservationEntry.setTimestamp(7, null);
             addReservationEntry.executeUpdate();
         }
         catch(SQLException sqlException) {
@@ -107,15 +105,21 @@ public class ReservationQueries {
         return facultyReservationArray;
     }
     
-    // needs fixed
-    public static ArrayList<String> getRoomsReservedByDate(String room) {
+    public static ArrayList<ReservationEntry> getReservationByRoom(String room) {
         connection = DBConnection.getConnection();
-        ArrayList<String> roomsReservationArray = new ArrayList<String>();
+        ArrayList<ReservationEntry> roomsReservationArray = new ArrayList<ReservationEntry>();
         try {
-            getRoomsReservedByDate = connection.prepareStatement("SELECT * ROOM FROM RESERVATIONS WHERE DATE LIKE (?)" + "ORDER BY ROOM");
-            ResultSet resultSet = getRoomsReservedByDate.executeQuery();
+            getReservationByFaculty = connection.prepareStatement("SELECT * FROM RESERVATIONS WHERE ROOM LIKE VALUES(?)" + "ORDER BY TIMESTAMP");
+            ResultSet resultSet = getReservationByFaculty.executeQuery();
             while (resultSet.next()) {
-                roomsReservationArray.add(resultSet.getString(1));
+                roomsReservationArray.add(new ReservationEntry(
+                resultSet.getString("faculty"),
+                resultSet.getString("room"),
+                new DateEntry(resultSet.getInt("month"),
+                resultSet.getInt("day"),
+                resultSet.getInt("years")),
+                resultSet.getInt("seats"),
+                resultSet.getTimestamp("timestamp")));
             }
         }
         catch(SQLException sqlException) {

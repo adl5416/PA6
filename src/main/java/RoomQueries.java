@@ -41,7 +41,6 @@ public class RoomQueries {
                 allRooms.add(new RoomEntry(
                 resultSet.getString("name"),
                 resultSet.getInt("seats")));
-                // break
             }
         }
         catch(SQLException sqlException) {

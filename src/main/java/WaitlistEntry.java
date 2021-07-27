@@ -34,6 +34,10 @@ public class WaitlistEntry {
     }
     String Faculty;
     DateEntry date;
+
+    public DateEntry getDate() {
+        return date;
+    }
     int seats;
     Timestamp timestamp;
 }
